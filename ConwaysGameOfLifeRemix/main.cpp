@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <Windows.h>
 using namespace std;
 
 vector<vector<int>> randomState(int, int);
@@ -37,6 +38,13 @@ void render(vector<vector<int>> stateVec)
 	int rowSize = stateVec.size();
 	int colSize = stateVec[0].size();
 
+	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	if (hOut == INVALID_HANDLE_VALUE)
+	{
+		GetLastError();
+	}
+
+
 	for (int row = 0; row < rowSize; row++)
 	{
 		for (int col = 0; col < colSize; col++)
@@ -47,7 +55,10 @@ void render(vector<vector<int>> stateVec)
 			}
 			else
 			{
+				SetConsoleTextAttribute(hOut, 93);
 				cout << "#";
+				SetConsoleTextAttribute(hOut, 0);
+
 			}
 		}
 
