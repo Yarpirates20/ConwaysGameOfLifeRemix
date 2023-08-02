@@ -15,6 +15,13 @@ int main()
 	vector<vector<int>> deadState = randomState(height, width);
 	render(deadState);
 
+	/*char block = 178;
+	cout << block << endl;*/
+
+	//SetConsoleOutputCP(CP_UTF8);
+	//wchar_t a[] = L"\u2620";
+	//wprintf(a);
+	//wcout <<  L"\u2620" << endl;
 	return 0;
 }
 
@@ -38,6 +45,7 @@ void render(vector<vector<int>> stateVec)
 {
 	int rowSize = stateVec.size();
 	int colSize = stateVec[0].size();
+	const char BLOCK = 176;
 
 	/*HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	if (hOut == INVALID_HANDLE_VALUE)
@@ -57,7 +65,7 @@ void render(vector<vector<int>> stateVec)
 			else
 			{
 				color(0x0E);
-				cout << "#";
+				cout << BLOCK;
 				color(0x07);
 
 			}
