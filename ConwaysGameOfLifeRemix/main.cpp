@@ -5,6 +5,7 @@ using namespace std;
 
 vector<vector<int>> randomState(int, int);
 void render(vector<vector<int>>);
+void color(int color = 0x07);
 
 int main()
 {
@@ -38,11 +39,11 @@ void render(vector<vector<int>> stateVec)
 	int rowSize = stateVec.size();
 	int colSize = stateVec[0].size();
 
-	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	/*HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	if (hOut == INVALID_HANDLE_VALUE)
 	{
 		GetLastError();
-	}
+	}*/
 
 
 	for (int row = 0; row < rowSize; row++)
@@ -55,13 +56,28 @@ void render(vector<vector<int>> stateVec)
 			}
 			else
 			{
-				SetConsoleTextAttribute(hOut, 93);
+				color(0x0E);
 				cout << "#";
-				SetConsoleTextAttribute(hOut, 0);
+				color(0x07);
 
 			}
 		}
 
 		cout << endl;
 	}
+}
+
+//Changes console text color. Two hex digits are supplied, the first is the background and the second is the foreground. 
+//	0 = Black       8 = Gray
+//	1 = Blue        9 = Light Blue
+//	2 = Green       A = Light Green
+//	3 = Aqua        B = Light Aqua
+//	4 = Red         C = Light Red
+//	5 = Purple      D = Light Purple
+//	6 = Yellow      E = Light Yellow
+//	7 = White       F = Bright White
+void color(int color)
+{
+	
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }
