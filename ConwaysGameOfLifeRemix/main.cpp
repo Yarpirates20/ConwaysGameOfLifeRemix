@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <Windows.h>
-#include "../GOLRemixLib/GOLRemixLib.cpp"
+#include "../GOLRemixLib/GOL.h"
 using namespace std;
 
 vector<vector<int>> randomState(int, int);
@@ -10,7 +10,8 @@ void color(int color = 0x07);
 
 int main()
 {
-	square(5);
+	/*int square1 = square(5);
+	cout << square1 << endl;*/
 	srand(time(0));
 
 	int height = 10, width = 20;
@@ -27,21 +28,21 @@ int main()
 	return 0;
 }
 
-vector<vector<int>> randomState(int height, int width)
-{
-	vector<vector<int>> state(height, vector<int>(width));
-	
-
-	for (int i = 0; i < height; i++)
-	{
-		for (int j = 0; j < width; j++)
-		{
-			int randomBit = rand() % 2;
-			state[i][j] = randomBit;
-		}
-	}
-	return state;
-}
+//vector<vector<int>> randomState(int height, int width)
+//{
+//	vector<vector<int>> state(height, vector<int>(width));
+//	
+//
+//	for (int i = 0; i < height; i++)
+//	{
+//		for (int j = 0; j < width; j++)
+//		{
+//			int randomBit = rand() % 2;
+//			state[i][j] = randomBit;
+//		}
+//	}
+//	return state;
+//}
 
 void render(vector<vector<int>> stateVec)
 {

@@ -48,6 +48,9 @@
     <ProjectReference Include="..\ConwaysGameOfLifeRemix\ConwaysGameOfLifeRemix.vcxproj">
       <Project>{8bcb262a-eb6e-47ff-ad6b-6254be9b4ba0}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\GOLRemixLib\GOLRemixLib.vcxproj">
+      <Project>{799d27bf-4328-474f-b667-c4c86c3cbc25}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
