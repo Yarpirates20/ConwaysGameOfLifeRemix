@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <Windows.h>
+#include "../GOLRemixLib/GOLRemixLib.cpp"
 using namespace std;
 
 vector<vector<int>> randomState(int, int);
@@ -9,6 +10,7 @@ void color(int color = 0x07);
 
 int main()
 {
+	square(5);
 	srand(time(0));
 
 	int height = 10, width = 20;
@@ -89,3 +91,5 @@ void color(int color)
 	
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }
+
+
