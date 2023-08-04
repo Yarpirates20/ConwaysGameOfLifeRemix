@@ -48,7 +48,6 @@ std::vector<std::vector<int>> nextBoardState(std::vector<std::vector<int>> initi
 //	5 = Purple      D = Light Purple
 //	6 = Yellow      E = Light Yellow
 //	7 = White       F = Bright White
-
 void color(int c)
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), c);
