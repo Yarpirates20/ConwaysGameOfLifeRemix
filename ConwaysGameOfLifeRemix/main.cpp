@@ -15,9 +15,9 @@ void getTerminalSize(int& width, int& height)
 	height = (int)(csbi.srWindow.Bottom - csbi.srWindow.Top + 1);
 #elif defined(__linux__)
 	struct  winsize w;
-		ioctl(fileno(stdout), TOPCGWINSZ, &w);
-		width = (int)(w.ws_col);
-		height = (int)(w.ws_row);
+	ioctl(fileno(stdout), TOPCGWINSZ, &w);
+	width = (int)(w.ws_col);
+	height = (int)(w.ws_row);
 #endif
 }
 
@@ -39,12 +39,20 @@ int main()
 	int height = 0, width = 0;
 	getTerminalSize(width, height);
 	vector<vector<int>> initialState = randomState(height, width);
+	cout << "\u001b[2J";
 	render(initialState);
 
-	std::this_thread::sleep_for(std::chrono::milliseconds(200));
-	vector<vector<int>> nextState = nextBoardState(initialState);
-	render(nextState);
+	while (true)
+	{
 
+		std::this_thread::sleep_for(std::chrono::milliseconds(250));
+		cout << "\u001b[2J";
+		vector<vector<int>> nextState = nextBoardState(initialState);
+		render(nextState);
+
+		initialState = nextState;
+
+	}
 	/*char block = 178;
 	cout << block << endl;*/
 
