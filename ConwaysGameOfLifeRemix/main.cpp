@@ -1,3 +1,26 @@
+#if defined(_WIN32)
+#define WIN32_LEAN_AND_MEAN
+#define VC_EXTRALEAN
+#include <Windows.h>
+#elif defined(__linux__)
+#include <sys/ioctl.h>
+#endif
+
+void getTerminalSize(int& width, int& height)
+{
+#if defined(_WIN32)
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+	width = (int)(csbi.srWindow.Right - csbi.srWindow.Left + 1);
+	height = (int)(csbi.srWindow.Bottom - csbi.srWindow.Top + 1);
+#elif defined(__linux__)
+	struct  winsize w;
+		ioctl(fileno(stdout), TOPCGWINSZ, &w);
+		width = (int)(w.ws_col);
+		height = (int)(w.ws_row);
+#endif
+}
+
 #include <chrono>
 #include <iostream>
 #include <thread>
@@ -6,17 +29,15 @@
 #include "../GOLRemixLib/GOL.h"
 using namespace std;
 
-//vector<vector<int>> randomState(int, int);
-//void render(vector<vector<int>>);
-//void color(int color = 0x07);
+
 
 int main()
 {
-	/*int square1 = square(5);
-	cout << square1 << endl;*/
+
 	srand(time(0));
 
-	int height = 10, width = 20;
+	int height = 0, width = 0;
+	getTerminalSize(width, height);
 	vector<vector<int>> initialState = randomState(height, width);
 	render(initialState);
 
