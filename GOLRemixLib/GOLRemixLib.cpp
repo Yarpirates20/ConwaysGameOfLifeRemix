@@ -36,7 +36,73 @@ int square(int x)
 
 std::vector<std::vector<int>> nextBoardState(std::vector<std::vector<int>> initialState)
 {
-	return std::vector<std::vector<int>>();
+	std::vector<std::vector<int>> nextState;
+	
+	int height = initialState.size();
+	int width = initialState[0].size();
+
+	for (int row = 0; row < height; row++)
+	{
+		for (int col = 0; col < width; col++)
+		{
+			// Count neighbors
+			int numNeighbors = 0;
+			int left = (col - 1 + width) % width;
+			int right = (col + 1) % width;
+			int above = (row - 1 + height) % height;
+			int below = (row + 1) % height;
+
+			if (initialState[above][left] == 1)
+			{
+				numNeighbors++;
+			}
+			if (initialState[above][col] == 1)
+			{
+				numNeighbors++;
+			}
+			if (initialState[above][right] == 1)
+			{
+				numNeighbors++;
+			}
+			if (initialState[row][left] == 1)
+			{
+				numNeighbors++;
+			}
+			if (initialState[row][right] == 1)
+			{
+				numNeighbors++;
+			}
+			if (initialState[below][left] == 1)
+			{
+				numNeighbors++;
+			}
+			if (initialState[below][col] == 1)
+			{
+				numNeighbors++;
+			}
+			if (initialState[below][right] == 1)
+			{
+				numNeighbors++;
+			}
+
+			// Set next state cells based on num neighbors
+			if ((initialState[row][col] == 1) && (numNeighbors == 2 || numNeighbors == 3))
+			{
+				nextState[row][col] = 1;
+			}
+			else if (initialState[row][col] == 0 && numNeighbors == 3)
+			{
+				nextState[row][col] = 1;
+			}
+			else
+			{
+				nextState[row][col] = 0;
+			}
+
+		}
+	}
+
+	return nextState;
 }
 
 //Changes console text color. Two hex digits are supplied, the first is the background and the second is the foreground. 
