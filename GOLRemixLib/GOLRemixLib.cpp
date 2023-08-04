@@ -36,57 +36,90 @@ int square(int x)
 
 std::vector<std::vector<int>> nextBoardState(std::vector<std::vector<int>> initialState)
 {
-	std::vector<std::vector<int>> nextState;
-	
 	int height = initialState.size();
 	int width = initialState[0].size();
 
-	for (int row = 0; row < height; row++)
+	std::vector<std::vector<int>> nextState(height, std::vector<int>(width, 0));
+	int dirs[8][2] = { {-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1} };
+
+	for (int row = 0; row < height; ++row)
 	{
-		for (int col = 0; col < width; col++)
+		for (int col = 0; col < width; ++col)
 		{
 			// Count neighbors
 			int numNeighbors = 0;
-			int left = (col - 1 + width) % width;
-			int right = (col + 1) % width;
-			int above = (row - 1 + height) % height;
-			int below = (row + 1) % height;
+			for (const auto& d : dirs)
+			{
+				int x = row + d[0];
+				int y = col + d[1];
+				if (x >= 0 && x < height && y >= 0 && y < width && initialState[x][y] == 1)
+				{
+					++numNeighbors;
+				}
 
-			if (initialState[above][left] == 1)
-			{
-				numNeighbors++;
 			}
-			if (initialState[above][col] == 1)
-			{
-				numNeighbors++;
-			}
-			if (initialState[above][right] == 1)
-			{
-				numNeighbors++;
-			}
-			if (initialState[row][left] == 1)
-			{
-				numNeighbors++;
-			}
-			if (initialState[row][right] == 1)
-			{
-				numNeighbors++;
-			}
-			if (initialState[below][left] == 1)
-			{
-				numNeighbors++;
-			}
-			if (initialState[below][col] == 1)
-			{
-				numNeighbors++;
-			}
-			if (initialState[below][right] == 1)
-			{
-				numNeighbors++;
-			}
+			//int left = (col - 1 + width) % width;
+			//int right = (col + 1 + width) % width;
+			//int above = (row - 1 + height) % height;
+			//int below = (row + 1 + height) % height;
+
+			//if (initialState[above][left] == 1)
+			//{
+			//	numNeighbors++;
+			//}
+			//if (initialState[above][col] == 1)
+			//{
+			//	numNeighbors++;
+			//}
+			//if (initialState[above][right] == 1)
+			//{
+			//	numNeighbors++;
+			//}
+			//if (initialState[row][left] == 1)
+			//{
+			//	numNeighbors++;
+			//}
+			//if (initialState[row][right] == 1)
+			//{
+			//	numNeighbors++;
+			//}
+			//if (initialState[below][left] == 1)
+			//{
+			//	numNeighbors++;
+			//}
+			//if (initialState[below][col] == 1)
+			//{
+			//	numNeighbors++;
+			//}
+			//if (initialState[below][right] == 1)
+			//{
+			//	numNeighbors++;
+			//}
 
 			// Set next state cells based on num neighbors
-			if ((initialState[row][col] == 1) && (numNeighbors == 2 || numNeighbors == 3))
+			//if (initialState[row][col] == 1)
+			//{
+			//	if (numNeighbors == 0 || numNeighbors == 1)
+			//	{
+			//		nextState[row][col] = 0;
+			//	} 
+			//	else if (numNeighbors == 2 || numNeighbors == 3)
+			//	{
+			//		nextState[row][col] = 1;
+			//	}
+			//	else if (numNeighbors > 3)
+			//	{
+			//		nextState[row][col] = 0;
+			//	}
+			//}
+			//else if (initialState[row][col] == 0)
+			//{
+			//	if (numNeighbors == 3)
+			//	{
+			//		nextState[row][col] = 1;
+			//	}
+			//}
+			if (initialState[row][col] == 1 && (numNeighbors == 2 || numNeighbors == 3))
 			{
 				nextState[row][col] = 1;
 			}

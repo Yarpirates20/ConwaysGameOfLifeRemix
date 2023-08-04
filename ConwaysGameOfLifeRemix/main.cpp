@@ -1,4 +1,6 @@
+#include <chrono>
 #include <iostream>
+#include <thread>
 #include <vector>
 #include <Windows.h>
 #include "../GOLRemixLib/GOL.h"
@@ -15,8 +17,12 @@ int main()
 	srand(time(0));
 
 	int height = 10, width = 20;
-	vector<vector<int>> deadState = randomState(height, width);
-	render(deadState);
+	vector<vector<int>> initialState = randomState(height, width);
+	render(initialState);
+
+	std::this_thread::sleep_for(std::chrono::milliseconds(200));
+	vector<vector<int>> nextState = nextBoardState(initialState);
+	render(nextState);
 
 	/*char block = 178;
 	cout << block << endl;*/
