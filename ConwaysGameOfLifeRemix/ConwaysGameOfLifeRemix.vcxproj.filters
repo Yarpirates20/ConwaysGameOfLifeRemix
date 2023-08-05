@@ -23,5 +23,17 @@
     <Text Include="..\GOLRemixLib\toad.txt">
       <Filter>Source Files</Filter>
     </Text>
+    <Text Include="beacon.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="blinker.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="glider.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="ggg.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

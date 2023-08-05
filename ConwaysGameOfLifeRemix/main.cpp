@@ -40,9 +40,10 @@ int main()
 	vector<vector<int>> initialState;
 	int userChoice;
 
-	cout << "1. Start new Game of Life \n"
+	cout << "Conway's Game Of Life\n\n"
+		<< "1. Start new Game of Life \n"
 		<< "2. Load Game of Life from file \n"
-		<< "Enter choice: ";
+		<< "\nEnter choice: ";
 	cin >> userChoice;
 
 	if (userChoice == 1)
@@ -52,11 +53,12 @@ int main()
 	}
 	else
 	{
-		/*string filename;
-		cout << "Enter filename: ";
-		getline(cin, filename);*/
+		string filename;
+		cin.ignore();
+		cout << "\nEnter filename: ";
+		getline(cin, filename);
 
-		initialState = loadBoardState("toad.txt");
+		initialState = loadBoardState(filename);
 	}
 
 	cout << "\u001b[2J";

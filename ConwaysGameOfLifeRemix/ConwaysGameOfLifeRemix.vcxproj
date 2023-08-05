@@ -136,6 +136,10 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\GOLRemixLib\toad.txt" />
+    <Text Include="beacon.txt" />
+    <Text Include="blinker.txt" />
+    <Text Include="ggg.txt" />
+    <Text Include="glider.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
