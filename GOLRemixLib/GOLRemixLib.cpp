@@ -194,17 +194,29 @@ void render(vector<vector<int>> stateVec)
 std::vector<std::vector<int>> loadBoardState(std::string filename)
 {
 	std::ifstream infile(filename);
-	std::vector<std::vector<int>> loadVec;
-	std::string line;
-
-	while (getline(infile, line))
+	if (!infile)
 	{
-		stringstream ls{ line };
-		vector<int> lineVec;
-		std::copy(istream_iterator<int>(ls), istream_iterator<int>(), back_inserter(lineVec));
-		loadVec.push_back(lineVec);
+		cout << "File could not be found.\n";
+		exit(0);
+	}
+	std::vector<std::vector<int>> loadVec;
+
+	std::string line;
+	//std::istringstream iss(line);
+
+	while (!infile.eof())
+	{
+		vector<int> temp;
+		getline(infile, line);
+		for (auto c : line)
+		{
+			temp.push_back(c - '0');
+		}
+		loadVec.push_back(temp);
 	}
 
+
+	infile.close();
 
 	return loadVec;
 }
