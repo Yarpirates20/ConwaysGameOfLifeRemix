@@ -134,6 +134,9 @@
       <Project>{799d27bf-4328-474f-b667-c4c86c3cbc25}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\GOLRemixLib\toad.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

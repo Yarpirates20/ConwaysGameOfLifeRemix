@@ -7,6 +7,10 @@
 #include "GOL.h"
 #include <Windows.h>
 #include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
+#include <algorithm>
 using namespace std;
 
 // TODO: This is an example of a library function
@@ -185,4 +189,22 @@ void render(vector<vector<int>> stateVec)
 
 		cout << endl;
 	}
+}
+
+std::vector<std::vector<int>> loadBoardState(std::string filename)
+{
+	std::ifstream infile(filename);
+	std::vector<std::vector<int>> loadVec;
+	std::string line;
+
+	while (getline(infile, line))
+	{
+		stringstream ls{ line };
+		vector<int> lineVec;
+		std::copy(istream_iterator<int>(ls), istream_iterator<int>(), back_inserter(lineVec));
+		loadVec.push_back(lineVec);
+	}
+
+
+	return loadVec;
 }

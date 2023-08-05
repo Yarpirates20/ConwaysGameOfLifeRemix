@@ -26,6 +26,7 @@ void getTerminalSize(int& width, int& height)
 #include <thread>
 #include <vector>
 #include <Windows.h>
+#include <string>
 #include "../GOLRemixLib/GOL.h"
 using namespace std;
 
@@ -35,17 +36,36 @@ int main()
 {
 
 	srand(time(0));
-
 	int height = 0, width = 0;
-	getTerminalSize(width, height);
-	vector<vector<int>> initialState = randomState(height, width);
+	vector<vector<int>> initialState;
+	int userChoice;
+
+	cout << "1. Start new Game of Life \n"
+		<< "2. Load Game of Life from file \n"
+		<< "Enter choice: ";
+	cin >> userChoice;
+
+	if (userChoice == 1)
+	{
+		getTerminalSize(width, height);
+		initialState = randomState(height, width);
+	}
+	else
+	{
+		/*string filename;
+		cout << "Enter filename: ";
+		getline(cin, filename);*/
+
+		initialState = loadBoardState("toad.txt");
+	}
+
 	cout << "\u001b[2J";
 	render(initialState);
 
 	while (true)
 	{
 
-		std::this_thread::sleep_for(std::chrono::milliseconds(250));
+		std::this_thread::sleep_for(std::chrono::milliseconds(350));
 		cout << "\u001b[2J";
 		vector<vector<int>> nextState = nextBoardState(initialState);
 		render(nextState);
