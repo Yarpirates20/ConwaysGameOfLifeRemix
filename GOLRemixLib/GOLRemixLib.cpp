@@ -161,7 +161,7 @@ void render(vector<vector<int>> stateVec)
 {
 	int rowSize = stateVec.size();
 	int colSize = stateVec[0].size();
-	const char BLOCK = 176;
+	const char BLOCK = 254;
 
 	/*HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	if (hOut == INVALID_HANDLE_VALUE)
